@@ -10,11 +10,15 @@ before_script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
   - docker-compose build
-  - docker images
   - docker tag micro-practice_eureka-server $DOCKER_USERNAME/micro-practice_eureka-server
   - docker tag micro-practice_shopping-services $DOCKER_USERNAME/micro-practice_shopping-services
   - docker tag micro-practice_warehouse-services $DOCKER_USERNAME/micro-practice_warehouse-services
   - docker tag micro-practice_factory-services $DOCKER_USERNAME/micro-practice_factory-services
   - docker tag micro-practice_post-office-services $DOCKER_USERNAME/micro-practice_post-office-services
   - docker tag micro-practice_ui $DOCKER_USERNAME/micro-practice_ui
-  - docker images
+  - docker push gvabal/micro-practice_warehouse-services
+  - docker push gvabal/micro-practice_shopping-services
+  - docker push gvabal/micro-practice_post-office-services
+  - docker push gvabal/micro-practice_factory-services
+  - docker push gvabal/micro-practice_eureka-server
+  - docker push gvabal/micro-practice_ui
