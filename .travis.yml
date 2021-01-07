@@ -13,6 +13,6 @@ before_script:
   docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
-  ./eureka-server/gradlew build --stacktrace |
-  ./eureka-server/docker build -t $DOCKER_USERNAME/eureka-server |
+  ./eureka-server/gradlew build --stacktrace;
+  docker build -t $DOCKER_USERNAME/eureka-server ./eureka-server;
   docker push $DOCKER_USERNAME/eureka-server:latest
