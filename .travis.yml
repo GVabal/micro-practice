@@ -9,7 +9,7 @@ services:
 before_script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
-  - docker-compose build
+  - docker-compose build --build-arg JAR_FILE=home/travis/build/libs/*.jar
   - docker tag micro-practice_eureka-server $DOCKER_USERNAME/micro-practice_eureka-server
   - docker tag micro-practice_shopping-services $DOCKER_USERNAME/micro-practice_shopping-services
   - docker tag micro-practice_warehouse-services $DOCKER_USERNAME/micro-practice_warehouse-services
