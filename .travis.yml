@@ -9,6 +9,5 @@ services:
 before_script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
-  - docker build -t $DOCKER_USERNAME/eureka-server ./eureka-server
+  - docker-compose build eureka-server
   - docker images
-  - docker push $DOCKER_USERNAME/eureka-server
