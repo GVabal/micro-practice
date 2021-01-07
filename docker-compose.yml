@@ -1,0 +1,62 @@
+version: "3"
+services:
+  ui:
+    container_name: ui
+    restart: on-failure
+    build: ./ui
+    ports:
+      - "4200:4200"
+  eureka-server:
+    container_name: eureka-server
+    restart: on-failure
+    build: ./eureka-server
+    ports:
+      - "8761:8761"
+  factory-services:
+    container_name: factory-services
+    restart: on-failure
+    build: ./factory-services
+    ports:
+      - "8003:8003"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
+  post-office-services:
+    container_name: post-office-services
+    restart: on-failure
+    build: ./post-office-services
+    ports:
+      - "8002:8002"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
+  shopping-services:
+    container_name: shopping-services
+    restart: on-failure
+    build: ./shopping-services
+    ports:
+      - "8000:8000"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server
+  warehouse-services:
+    container_name: warehouse-services
+    restart: on-failure
+    build: ./warehouse-services
+    ports:
+      - "8001:8001"
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/
+    depends_on:
+      - eureka-server
+    links:
+      - eureka-server

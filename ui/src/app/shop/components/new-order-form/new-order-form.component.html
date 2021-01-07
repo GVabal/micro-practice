@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+  <input type="text" formControlName="customer" placeholder="CUSTOMER">
+
+  <section formArrayName="things" *ngFor="let thing of things.controls; let i = index;">
+    <div [formGroupName]="i">
+      <button type="button" (click)="removeThing(i)">Remove</button>
+      <input type="text" formControlName="name" placeholder="NAME"/>
+      <input type="number" formControlName="qty" placeholder="QTY"/>
+    </div>
+  </section>
+  <button type="button" (click)="addThing()">Add Thing</button>
+  <br>
+  <button type="button" (click)="submit()">Submit</button>
+  <p *ngIf="isLoading">Loading...</p>
+  <p>{{ message }}</p>
+</form>
