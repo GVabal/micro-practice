@@ -10,9 +10,9 @@ services:
   - docker
 
 before_script:
-  docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
-  ./eureka-server/gradlew build --stacktrace &&
-  ./eureka-server/docker build -t ${DOCKER_USERNAME}/eureka-server &&
-  docker push ${DOCKER_USERNAME}/eureka-server:latest
+  ./eureka-server/gradlew build --stacktrace |
+  ./eureka-server/docker build -t $DOCKER_USERNAME/eureka-server |
+  docker push $DOCKER_USERNAME/eureka-server:latest
