@@ -10,6 +10,6 @@ before_script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 script:
 #  - docker build -t $DOCKER_USERNAME/eureka-server ./eureka-server
-  - pwd && ls $DOCKER_USERNAME/eureka-server
+  - pwd && ls eureka-server
 #  - docker images
 #  - docker push $DOCKER_USERNAME/eureka-server
