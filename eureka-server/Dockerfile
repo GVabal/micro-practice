@@ -4,7 +4,7 @@ CMD gradle build
 
 WORKDIR /app
 
-COPY build/libs/*.jar /app/app.jar
+COPY --from=build build/libs/*.jar /app/app.jar
 
 EXPOSE 8761
 ENTRYPOINT ["java","-jar","app.jar"]
