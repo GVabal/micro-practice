@@ -9,13 +9,10 @@ jdk:
 services:
   - docker
 
-deploy:
-  provider: script
-  before_script:
-    docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
-  script:
-    ./eureka-server/gradlew build
-    docker-compose build eureka-server
-    docker push ${DOCKER_USERNAME}/*_eureka-server:latest
-  on:
-    branch: master
+before_script:
+  docker login -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+
+script:
+  ./eureka-server/gradlew build --stacktrace
+#  docker-compose build eureka-server
+#  docker push ${DOCKER_USERNAME}/*_eureka-server:latest
