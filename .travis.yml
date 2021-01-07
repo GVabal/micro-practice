@@ -14,5 +14,7 @@ before_script:
 
 script:
   ./eureka-server/gradlew build --stacktrace
+  pwd
+  ls
   docker-compose build eureka-server
   docker push ${DOCKER_USERNAME}/*_eureka-server:latest
