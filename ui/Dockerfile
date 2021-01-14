@@ -1,15 +1,12 @@
-FROM node:current-alpine3.12
+# stage 1
 
+FROM node:alpine AS my-app-build
 WORKDIR /app
+COPY . .
+RUN npm ci && npm run build
 
-ENV PATH /app/node_modules/.bin:$PATH
+# stage 2
 
-COPY package*.json /app/
-
-RUN npm install
-RUN npm install -g @angular/cli@11.0.5
-
-COPY . /app/
-
+FROM nginx:alpine
+COPY --from=my-app-build /app/dist/ui /usr/share/nginx/html
 EXPOSE 4200
-CMD ng serve --host 0.0.0.0
