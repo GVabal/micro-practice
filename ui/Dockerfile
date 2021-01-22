@@ -7,6 +7,5 @@ RUN npm ci && npm run build
 
 # stage 2
 
-FROM nginx:alpine
+FROM nginx:1.17.1-alpine
 COPY --from=my-app-build /app/dist/ui /usr/share/nginx/html
-EXPOSE 4200

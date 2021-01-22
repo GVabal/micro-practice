@@ -5,7 +5,7 @@ services:
     restart: on-failure
     build: ./ui
     ports:
-      - "4200:4200"
+      - "80:80"
   eureka-server:
     container_name: eureka-server
     restart: on-failure
